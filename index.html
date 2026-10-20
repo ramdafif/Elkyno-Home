@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELKYNO — Jasa Pembuatan Aplikasi &amp; Website</title>
+<meta name="description" content="ELKYNO membangun aplikasi dan website custom untuk bisnis Anda — dari ide sampai jadi produk digital yang siap pakai.">
+<link rel="icon" href="assets/Logo-Elkyno.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0F16;
+    --bg-soft: #0F1620;
+    --card: #121B26;
+    --line: #223041;
+    --teal: #2FE0C4;
+    --blue: #3AA0FF;
+    --text: #EAF0F4;
+    --muted: #8FA1B0;
+    --grad: linear-gradient(135deg, var(--blue), var(--teal));
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.logo-text{font-family:'Space Grotesk', sans-serif;}
+  a{text-decoration:none; color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%; display:block;}
+  .container{max-width:1160px; margin:0 auto; padding:0 24px;}
+
+  /* NAVBAR */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(10,15,22,0.75);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px; max-width:1160px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand img{width:38px; height:38px; object-fit:contain;}
+  .brand span{font-weight:700; font-size:20px; letter-spacing:0.5px;}
+  .nav-links{display:flex; gap:32px; align-items:center;}
+  .nav-links a{color:var(--muted); font-size:14.5px; font-weight:500; transition:color .2s;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-cta{
+    background:var(--grad); color:#04141A !important; padding:10px 20px;
+    border-radius:8px; font-weight:600 !important; font-size:14px !important;
+  }
+  .menu-btn{display:none; background:none; border:none; color:var(--text); font-size:26px; cursor:pointer;}
+
+  /* HERO */
+  .hero{
+    position:relative; padding:170px 0 110px; overflow:hidden;
+  }
+  .hero-lines{
+    position:absolute; inset:0; z-index:0; opacity:0.35; pointer-events:none;
+  }
+  .hero-inner{position:relative; z-index:1; display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:center;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; color:var(--teal);
+    font-size:13px; letter-spacing:2px; font-weight:600; text-transform:uppercase;
+    border:1px solid rgba(47,224,196,0.3); padding:6px 14px; border-radius:100px;
+    background:rgba(47,224,196,0.06); margin-bottom:22px;
+  }
+  .hero h1{font-size:52px; font-weight:700; line-height:1.15; margin-bottom:20px;}
+  .hero h1 .grad{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero p{color:var(--muted); font-size:17px; max-width:520px; margin-bottom:34px;}
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    padding:14px 26px; border-radius:9px; font-weight:600; font-size:15px;
+    display:inline-flex; align-items:center; gap:10px; transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{background:var(--grad); color:#04141A;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(58,160,255,0.25);}
+  .btn-outline{border:1px solid var(--line); color:var(--text);}
+  .btn-outline:hover{border-color:var(--teal); color:var(--teal);}
+  .hero-visual{
+    position:relative; display:flex; align-items:center; justify-content:center;
+  }
+  .hero-visual img{width:100%; max-width:360px; filter:drop-shadow(0 20px 50px rgba(47,224,196,0.15));}
+
+  /* STATS STRIP */
+  .stats{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:36px 0; background:var(--bg-soft);}
+  .stats-inner{display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;}
+  .stat b{display:block; font-size:28px; font-family:'Space Grotesk',sans-serif; color:var(--text);}
+  .stat span{color:var(--muted); font-size:13.5px;}
+
+  /* SECTION HEADER */
+  .section{padding:100px 0;}
+  .sec-head{max-width:600px; margin-bottom:56px;}
+  .sec-tag{color:var(--teal); font-size:13px; letter-spacing:2px; font-weight:600; text-transform:uppercase;}
+  .sec-head h2{font-size:36px; margin-top:12px; font-weight:700;}
+  .sec-head p{color:var(--muted); margin-top:14px; font-size:15.5px;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;}
+  .about-card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px; padding:32px;
+  }
+  .about-card img{width:64px; margin-bottom:18px;}
+  .check-list{display:flex; flex-direction:column; gap:16px; margin-top:10px;}
+  .check-item{display:flex; gap:12px; align-items:flex-start;}
+  .check-item .dot{
+    min-width:22px; height:22px; border-radius:50%; background:rgba(47,224,196,0.12);
+    color:var(--teal); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700;
+  }
+  .check-item p{color:var(--muted); font-size:15px;}
+
+  /* SERVICES */
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .service-card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px; padding:30px;
+    transition:border-color .2s, transform .2s;
+  }
+  .service-card:hover{border-color:rgba(58,160,255,0.4); transform:translateY(-4px);}
+  .service-icon{
+    width:48px; height:48px; border-radius:12px; background:var(--grad);
+    display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:20px; color:#04141A;
+  }
+  .service-card h3{font-size:19px; margin-bottom:10px;}
+  .service-card p{color:var(--muted); font-size:14.5px;}
+
+  /* PROCESS */
+  .process{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .process-step{position:relative; padding-top:8px;}
+  .process-step .num{
+    font-family:'Space Grotesk',sans-serif; font-size:14px; color:var(--teal); font-weight:700;
+    border:1px solid rgba(47,224,196,0.3); width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .process-step h3{font-size:16.5px; margin-bottom:8px;}
+  .process-step p{color:var(--muted); font-size:14px;}
+
+  /* PORTFOLIO */
+  .portfolio-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .portfolio-card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden;
+  }
+  .portfolio-thumb{
+    height:170px; background:var(--grad); display:flex; align-items:center; justify-content:center;
+    color:rgba(4,20,26,0.5); font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14px; letter-spacing:1px;
+  }
+  .portfolio-body{padding:22px;}
+  .portfolio-body h3{font-size:16.5px; margin-bottom:6px;}
+  .portfolio-body p{color:var(--muted); font-size:13.5px;}
+  .tag-row{display:flex; gap:8px; margin-top:14px; flex-wrap:wrap;}
+  .tag-row span{
+    font-size:11.5px; color:var(--teal); background:rgba(47,224,196,0.08);
+    padding:4px 10px; border-radius:100px; border:1px solid rgba(47,224,196,0.2);
+  }
+
+  /* NEWS FEED */
+  .news-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .news-card{background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden; transition:transform .2s;}
+  .news-card:hover{transform:translateY(-4px);}
+  .news-thumb{height:180px; background:var(--grad); opacity:0.6;}
+  .news-body{padding:22px;}
+  .news-date{font-size:12px; color:var(--teal); margin-bottom:8px; display:block;}
+  .news-body h3{font-size:17px; margin-bottom:10px; line-height:1.4;}
+  .news-body p{color:var(--muted); font-size:14px;}
+
+  /* CTA / ORDER */
+  .order{
+    background:linear-gradient(180deg, var(--bg-soft), var(--bg));
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .order-box{
+    background:var(--card); border:1px solid var(--line); border-radius:20px;
+    padding:56px; display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+    position:relative; overflow:hidden;
+  }
+  .order-box::before{
+    content:""; position:absolute; width:300px; height:300px; border-radius:50%;
+    background:var(--grad); opacity:0.08; filter:blur(60px); top:-100px; right:-80px;
+  }
+  .order-text h2{font-size:30px; margin-bottom:14px;}
+  .order-text p{color:var(--muted); font-size:15.5px; margin-bottom:26px; max-width:460px;}
+  .order-form{
+    background:var(--bg-soft); border:1px solid var(--line); border-radius:14px; padding:26px;
+    display:flex; flex-direction:column; gap:14px; position:relative; z-index:1;
+  }
+  .order-form label{font-size:13px; color:var(--muted); margin-bottom:-8px;}
+  .order-form input, .order-form select, .order-form textarea{
+    background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:12px 14px;
+    color:var(--text); font-family:inherit; font-size:14.5px; outline:none;
+  }
+  .order-form input:focus, .order-form select:focus, .order-form textarea:focus{border-color:var(--teal);}
+  .order-form textarea{resize:vertical; min-height:80px;}
+
+  /* CUSTOM DROPDOWN */
+  .dropdown{position:relative;}
+  .dropdown-toggle{
+    width:100%; display:flex; align-items:center; justify-content:space-between;
+    background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:12px 14px;
+    color:var(--text); font-family:inherit; font-size:14.5px; cursor:pointer; text-align:left;
+  }
+  .dropdown-toggle:hover{border-color:var(--teal);}
+  .dropdown .chevron{width:16px; height:16px; color:var(--muted); transition:transform .2s;}
+  .dropdown.open .chevron{transform:rotate(180deg);}
+  .dropdown-menu{
+    position:absolute; top:calc(100% + 8px); left:0; right:0; z-index:20;
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:6px; box-shadow:0 16px 40px rgba(0,0,0,0.4);
+    opacity:0; visibility:hidden; transform:translateY(-6px);
+    transition:opacity .18s, transform .18s, visibility .18s;
+    max-height:260px; overflow-y:auto;
+  }
+  .dropdown.open .dropdown-menu{opacity:1; visibility:visible; transform:translateY(0);}
+  .dropdown-item{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 14px; border-radius:8px; font-size:14.5px; color:var(--text);
+    cursor:pointer; transition:background .15s;
+  }
+  .dropdown-item:hover{background:rgba(58,160,255,0.08);}
+  .dropdown-item .radio{
+    width:18px; height:18px; border-radius:50%; border:1.5px solid var(--line);
+    flex-shrink:0; position:relative;
+  }
+  .dropdown-item.selected{background:rgba(47,224,196,0.06);}
+  .dropdown-item.selected .radio{border-color:var(--teal);}
+  .dropdown-item.selected .radio::after{
+    content:""; position:absolute; inset:3px; border-radius:50%; background:var(--teal);
+  }
+  .order-form button{
+    background:var(--grad); border:none; padding:14px; border-radius:9px; color:#04141A;
+    font-weight:700; font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+    font-family:inherit;
+  }
+  .order-form button:hover{opacity:0.92;}
+  .order-note{font-size:12.5px; color:var(--muted); text-align:center;}
+
+  /* FOOTER */
+  footer{padding:50px 0 30px;}
+  .footer-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; padding-bottom:30px; border-bottom:1px solid var(--line);}
+  .footer-brand{max-width:300px;}
+  .footer-brand p{color:var(--muted); font-size:14px; margin-top:12px;}
+  .footer-cols{display:flex; gap:60px; flex-wrap:wrap;}
+  .footer-col h4{font-size:14px; margin-bottom:16px;}
+  .footer-col a{display:block; color:var(--muted); font-size:14px; margin-bottom:10px; transition:color .2s;}
+  .footer-col a:hover{color:var(--teal);}
+  .footer-bottom{padding-top:24px; display:flex; justify-content:space-between; color:var(--muted); font-size:13px; flex-wrap:wrap; gap:10px;}
+
+  /* WHATSAPP FLOAT */
+  .wa-float{
+    position:fixed; bottom:24px; right:24px; z-index:90;
+    background:#25D366; width:58px; height:58px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(37,211,102,0.4);
+    transition:transform .2s;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+  .wa-float svg{width:28px; height:28px;}
+
+  @media (max-width: 900px){
+    .nav-links{position:fixed; top:64px; right:0; left:0; background:var(--bg); flex-direction:column; padding:24px; border-bottom:1px solid var(--line); display:none; gap:18px;}
+    .nav-links.open{display:flex;}
+    .menu-btn{display:block;}
+    .hero-inner{grid-template-columns:1fr;}
+    .hero h1{font-size:36px;}
+    .about-grid{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .process{grid-template-columns:1fr 1fr;}
+    .portfolio-grid{grid-template-columns:1fr;}
+    .order-box{grid-template-columns:1fr; padding:32px;}
+    .stats-inner{justify-content:flex-start;}
+    .stat{width:45%;}
+  }
+  @media (max-width: 560px){
+    .services-grid{grid-template-columns:1fr;}
+    .process{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="brand">
+      <img src="assets/Logo-Elkyno.png" alt="ELKYNO logo">
+      <span>ELKYNO</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#proses">Proses</a></li>
+      <li><a href="#portofolio">Portofolio</a></li>
+      <li><a href="#news">Berita</a></li>
+      <li><a href="#pesan" class="nav-cta">Pesan Sekarang</a></li>
+    </ul>
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="container hero-inner">
+    <div class="hero-visual">
+      <img src="assets/Logo-Elkyno.png" alt="ELKYNO">
+    </div>
+    <div>
+      <span class="eyebrow">● Menuju Software House Terpercaya</span>
+      <h1>Wujudkan <span class="grad">Aplikasi &amp; Website</span> Bisnis Anda</h1>
+      <p>ELKYNO membantu bisnis Anda punya produk digital yang custom, cepat, dan siap dipakai — dari perencanaan sampai website atau aplikasi Anda live.</p>
+      <div class="btn-row">
+        <a href="#pesan" class="btn btn-primary">Pesan via WhatsApp →</a>
+        <a href="#layanan" class="btn btn-outline">Lihat Layanan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container stats-inner">
+    <div class="stat"><b>30+</b><span>Proyek selesai</span></div>
+    <div class="stat"><b>98%</b><span>Klien puas</span></div>
+    <div class="stat"><b>7 hari</b><span>Estimasi tercepat</span></div>
+    <div class="stat"><b>24/7</b><span>Support after-sales</span></div>
+  </div>
+</section>
+
+<section class="section" id="tentang">
+  <div class="container about-grid">
+    <div class="about-card">
+      <img src="assets/Logo-Elkyno.png" alt="ELKYNO">
+      <h3>Kenapa ELKYNO?</h3>
+      <p style="color:var(--muted); font-size:14.5px; margin-top:8px;">Kami membangun produk digital seperti kami membangun produk sendiri — rapi, terukur, dan dengan komunikasi yang jelas ke klien.</p>
+    </div>
+    <div>
+      <span class="sec-tag">Tentang Kami</span>
+      <h2 style="font-size:32px; margin:12px 0 16px; font-weight:700;">Partner digital untuk bisnis yang mau naik kelas</h2>
+      <p style="color:var(--muted); font-size:15.5px;">ELKYNO adalah studio pengembangan aplikasi dan website yang fokus membantu UMKM hingga perusahaan menengah punya kehadiran digital yang profesional.</p>
+      <div class="check-list">
+        <div class="check-item"><span class="dot">✓</span><p>Desain custom, bukan template asal jadi</p></div>
+        <div class="check-item"><span class="dot">✓</span><p>Kode bersih &amp; mudah dikembangkan ke depannya</p></div>
+        <div class="check-item"><span class="dot">✓</span><p>Komunikasi langsung dengan tim, tanpa perantara</p></div>
+        <div class="check-item"><span class="dot">✓</span><p>Garansi revisi sampai Anda puas</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="layanan" style="background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">Layanan</span>
+      <h2>Apa yang kami kerjakan</h2>
+      <p>Dari landing page sederhana sampai aplikasi berbasis sistem, kami sesuaikan dengan kebutuhan dan budget Anda.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+        <h3>Website Company Profile</h3>
+        <p>Website resmi bisnis Anda — cepat, responsif, dan enak dilihat di HP maupun desktop.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛒</div>
+        <h3>Toko Online / E-commerce</h3>
+        <p>Sistem jualan online lengkap dengan katalog produk, keranjang, dan integrasi pembayaran.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Aplikasi Mobile</h3>
+        <p>Aplikasi Android/iOS custom sesuai kebutuhan operasional atau produk bisnis Anda.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>Sistem &amp; Dashboard Internal</h3>
+        <p>Aplikasi manajemen data, absensi, inventori, atau sistem internal lainnya.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>UI/UX Design</h3>
+        <p>Desain antarmuka yang enak dipakai, sebelum masuk ke tahap development.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛠️</div>
+        <h3>Maintenance &amp; Support</h3>
+        <p>Perawatan berkala, update fitur, dan bantuan teknis setelah website/aplikasi live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="proses">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">Alur Kerja</span>
+      <h2>Proses pengerjaan</h2>
+      <p>Transparan dari awal sampai akhir, Anda tahu persis di tahap mana proyek Anda.</p>
+    </div>
+    <div class="process">
+      <div class="process-step">
+        <div class="num">1</div>
+        <h3>Konsultasi</h3>
+        <p>Diskusi kebutuhan &amp; goals bisnis Anda via WhatsApp.</p>
+      </div>
+      <div class="process-step">
+        <div class="num">2</div>
+        <h3>Desain</h3>
+        <p>Kami buatkan mockup tampilan untuk disetujui.</p>
+      </div>
+      <div class="process-step">
+        <div class="num">3</div>
+        <h3>Development</h3>
+        <p>Proses coding dengan update progress berkala.</p>
+      </div>
+      <div class="process-step">
+        <div class="num">4</div>
+        <h3>Rilis &amp; Support</h3>
+        <p>Website/aplikasi live, plus pendampingan setelahnya.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="portofolio" style="background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">Portofolio</span>
+      <h2>Beberapa hasil kerja kami</h2>
+      <p>Contoh proyek — ganti dengan studi kasus dan screenshot proyek asli Anda.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <div class="portfolio-thumb">PREVIEW PROYEK</div>
+        <div class="portfolio-body">
+          <h3>Website Company Profile</h3>
+          <p>Klien: Perusahaan Konstruksi</p>
+          <div class="tag-row"><span>Website</span><span>Company Profile</span></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <div class="portfolio-thumb">PREVIEW PROYEK</div>
+        <div class="portfolio-body">
+          <h3>Aplikasi Kasir</h3>
+          <p>Klien: Retail &amp; F&amp;B</p>
+          <div class="tag-row"><span>Mobile App</span><span>POS System</span></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <div class="portfolio-thumb">PREVIEW PROYEK</div>
+        <div class="portfolio-body">
+          <h3>Toko Online</h3>
+          <p>Klien: Fashion Brand</p>
+          <div class="tag-row"><span>E-commerce</span><span>Payment Gateway</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="news" style="background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">Berita & Insight</span>
+      <h2>Berita Teknologi Indonesia</h2>
+      <p>Update harian dari sumber berita publik Indonesia seputar teknologi, digital, startup, AI, dan keamanan siber.</p>
+    </div>
+    <div class="news-grid">
+      <div class="news-card">
+        <div class="news-thumb"></div>
+        <div class="news-body">
+          <span class="news-date">6 Juli 2026</span>
+          <h3>Membangun MVP yang Efisien untuk Bisnis Anda</h3>
+          <p>Tips memilih fitur apa saja yang perlu diprioritaskan saat awal meluncurkan aplikasi.</p>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-thumb"></div>
+        <div class="news-body">
+          <span class="news-date">28 Juni 2026</span>
+          <h3>Pentingnya UI/UX untuk Konversi Penjualan</h3>
+          <p>Mengapa desain antarmuka yang ramah pengguna bisa meningkatkan loyalitas pelanggan.</p>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-thumb"></div>
+        <div class="news-body">
+          <span class="news-date">15 Juni 2026</span>
+          <h3>Mengenal Tech Stack untuk Startup</h3>
+          <p>Memahami pilihan teknologi yang tepat agar aplikasi mudah di-scale di kemudian hari.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section order" id="pesan">
+  <div class="container">
+    <div class="order-box">
+      <div class="order-text">
+        <span class="sec-tag">Mulai Proyek</span>
+        <h2>Siap punya website atau aplikasi sendiri?</h2>
+        <p>Isi detail singkat kebutuhan Anda. Setelah klik kirim, pesan otomatis akan terisi di WhatsApp — tinggal kirim ke kami.</p>
+        <div class="check-list">
+          <div class="check-item"><span class="dot">✓</span><p>Gratis konsultasi &amp; estimasi harga</p></div>
+          <div class="check-item"><span class="dot">✓</span><p>Direspon dalam waktu kurang dari 1x24 jam</p></div>
+        </div>
+      </div>
+      <form class="order-form" id="orderForm">
+        <label for="nama">Nama</label>
+        <input type="text" id="nama" placeholder="Nama Anda" required>
+
+        <label>Butuh apa?</label>
+        <div class="dropdown" id="layananDropdown">
+          <button type="button" class="dropdown-toggle" id="dropdownToggle">
+            <span id="dropdownLabel">Website Company Profile</span>
+            <svg class="chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="dropdown-menu" id="dropdownMenu">
+            <li class="dropdown-item selected" data-value="Website Company Profile">
+              <span>Website Company Profile</span><span class="radio"></span>
+            </li>
+            <li class="dropdown-item" data-value="Toko Online / E-commerce">
+              <span>Toko Online / E-commerce</span><span class="radio"></span>
+            </li>
+            <li class="dropdown-item" data-value="Aplikasi Mobile">
+              <span>Aplikasi Mobile</span><span class="radio"></span>
+            </li>
+            <li class="dropdown-item" data-value="Sistem / Dashboard Internal">
+              <span>Sistem / Dashboard Internal</span><span class="radio"></span>
+            </li>
+            <li class="dropdown-item" data-value="Lainnya">
+              <span>Lainnya</span><span class="radio"></span>
+            </li>
+          </ul>
+        </div>
+
+        <label for="detail">Detail singkat</label>
+        <textarea id="detail" placeholder="Ceritakan sedikit tentang kebutuhan Anda..."></textarea>
+
+        <button type="submit">Kirim ke WhatsApp 💬</button>
+        <p class="order-note">Anda akan diarahkan ke WhatsApp untuk melanjutkan chat</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand"><img src="assets/Logo-Elkyno.png" alt="ELKYNO"><span>ELKYNO</span></div>
+        <p>Studio pengembangan aplikasi &amp; website untuk bisnis Anda.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Navigasi</h4>
+          <a href="#tentang">Tentang</a>
+          <a href="#layanan">Layanan</a>
+          <a href="#portofolio">Portofolio</a>
+        </div>
+        <div class="footer-col">
+          <h4>Kontak</h4>
+          <a href="#pesan">WhatsApp</a>
+          <a href="mailto:hello@elkyno.com">hello@elkyno.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ELKYNO. Semua hak dilindungi.</span>
+      <span>Dibuat dengan ❤ oleh tim ELKYNO</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/6282220333686?text=Halo%20ELKYNO%2C%20saya%20mau%20tanya-tanya%20soal%20jasa%20pembuatan%20website%2Faplikasi" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
+  <svg viewBox="0 0 32 32" fill="white"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.837.744 5.5 2.046 7.808L0 32l8.4-2.02A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.28 13.28 0 01-6.77-1.853l-.485-.288-5.02 1.207 1.234-4.9-.316-.503A13.267 13.267 0 012.667 16C2.667 8.64 8.64 2.667 16 2.667S29.333 8.64 29.333 16 23.36 29.333 16 29.333zm7.293-9.947c-.4-.2-2.36-1.166-2.726-1.3-.366-.133-.633-.2-.9.2s-1.033 1.3-1.266 1.567c-.233.267-.466.3-.866.1-.4-.2-1.69-.623-3.22-1.986-1.19-1.06-1.993-2.37-2.226-2.77-.233-.4-.025-.617.175-.817.18-.18.4-.466.6-.7.2-.233.266-.4.4-.666.133-.267.066-.5-.034-.7-.1-.2-.9-2.166-1.233-2.966-.325-.78-.655-.674-.9-.686l-.766-.014c-.267 0-.7.1-1.067.5s-1.4 1.367-1.4 3.333 1.434 3.867 1.634 4.133c.2.267 2.82 4.307 6.834 6.04.955.412 1.7.658 2.28.842.958.305 1.83.262 2.52.159.769-.115 2.36-.966 2.693-1.898.333-.933.333-1.733.233-1.9-.1-.166-.366-.266-.766-.466z"/></svg>
+</a>
+
+<script>
+  // Fetch and display Indonesian technology news
+  const NEWS_FEED_URL = 'https://www.antaranews.com/rss/tekno.xml';
+  const NEWS_API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(NEWS_FEED_URL)}`;
+
+  const stripHtml = (value = '') => value.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
+  const truncateText = (value = '', maxLength = 120) => {
+    const text = stripHtml(value);
+    return text.length > maxLength ? `${text.slice(0, maxLength).trim()}...` : text;
+  };
+
+  const escapeHtml = (value = '') => value.replace(/[&<>'"]/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    "'": '&#39;',
+    '"': '&quot;'
+  }[char]));
+
+  async function fetchNews() {
+    const container = document.querySelector('.news-grid');
+    try {
+      const response = await fetch(NEWS_API_URL);
+      if (!response.ok) throw new Error('Live news request failed');
+      const data = await response.json();
+      if (data.status !== 'ok' || !Array.isArray(data.items)) throw new Error('Invalid live news response');
+
+      // Mengambil 3 berita teknologi Indonesia terbaru
+      const newsItems = data.items.slice(0, 3);
+
+      container.innerHTML = newsItems.map(news => {
+        const thumb = news.thumbnail || (news.enclosure && news.enclosure.link) || 'assets/Logo-Elkyno.png';
+        const date = new Date(news.pubDate).toLocaleDateString('id-ID', {
+          day: 'numeric', month: 'long', year: 'numeric'
+        });
+        return `
+        <div class="news-card">
+          <div class="news-thumb" style="background-image: url('${escapeHtml(thumb)}'); background-size: cover; background-position: center;"></div>
+          <div class="news-body">
+            <span class="news-date">${date} &bull; Antara Tekno</span>
+            <h3><a href="${escapeHtml(news.link)}" target="_blank" rel="noopener">${escapeHtml(news.title)}</a></h3>
+            <p>${escapeHtml(truncateText(news.description))}</p>
+          </div>
+        </div>
+      `}).join('');
+    } catch (error) {
+      console.warn('Live news failed, loading local fallback:', error);
+      try {
+        const fallbackResponse = await fetch('news.json');
+        const fallbackData = await fallbackResponse.json();
+        const fallbackItems = fallbackData.items.slice(0, 3);
+        container.innerHTML = fallbackItems.map(news => `
+          <div class="news-card">
+            <div class="news-thumb" style="background-image: url('${escapeHtml(news.thumbnail || (news.enclosure && news.enclosure.link) || 'assets/Logo-Elkyno.png')}'); background-size: cover; background-position: center;"></div>
+            <div class="news-body">
+              <span class="news-date">${new Date(news.pubDate).toLocaleDateString('id-ID')} &bull; Cadangan</span>
+              <h3><a href="${escapeHtml(news.link)}" target="_blank" rel="noopener">${escapeHtml(news.title)}</a></h3>
+              <p>${escapeHtml(truncateText(news.description))}</p>
+            </div>
+          </div>
+        `).join('');
+      } catch (fallbackError) {
+        console.error('Error loading fallback news:', fallbackError);
+        container.innerHTML = '<p>Gagal memuat berita teknologi terbaru saat ini.</p>';
+      }
+    }
+  }
+
+  fetchNews();
+
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const WA_NUMBER = "6282220333686"; // ganti dengan nomor WhatsApp asli Anda
+
+  // Custom dropdown logic
+  const dropdown = document.getElementById('layananDropdown');
+  const dropdownToggle = document.getElementById('dropdownToggle');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  const dropdownLabel = document.getElementById('dropdownLabel');
+  let selectedLayanan = 'Website Company Profile';
+
+  dropdownToggle.addEventListener('click', () => {
+    dropdown.classList.toggle('open');
+  });
+
+  dropdownMenu.querySelectorAll('.dropdown-item').forEach(item => {
+    item.addEventListener('click', () => {
+      dropdownMenu.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+      selectedLayanan = item.dataset.value;
+      dropdownLabel.textContent = selectedLayanan;
+      dropdown.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+  });
+
+  document.getElementById('orderForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const nama = document.getElementById('nama').value.trim();
+    const layanan = selectedLayanan;
+    const detail = document.getElementById('detail').value.trim();
+
+    let pesan = `Halo ELKYNO, saya *${nama}* ingin memesan layanan *${layanan}*.`;
+    if (detail) pesan += `\n\nDetail kebutuhan: ${detail}`;
+
+    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(pesan)}`;
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>
